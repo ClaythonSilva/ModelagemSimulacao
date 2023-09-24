@@ -1,6 +1,8 @@
 Web VPython 3.2
 import random
 
+#https://glowscript.org/#/user/claito/folder/MyPrograms/program/1ColisoesParede
+
 '''def colisao(esfera):
     coordenadasEsfera = [
         [esfera.pos.x + esfera.radius, esfera.pos.y, esfera.pos.z], #parte da direita da esfera [0]
