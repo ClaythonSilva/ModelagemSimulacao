@@ -1,0 +1,75 @@
+Web VPython 3.2
+import random
+
+'''def colisao(esfera):
+    coordenadasEsfera = [
+        [esfera.pos.x + esfera.radius, esfera.pos.y, esfera.pos.z], #parte da direita da esfera [0]
+        [esfera.pos.x, esfera.pos.y + esfera.radius, esfera.pos.z], #parte de cima da esfera [1]
+        [esfera.pos.x - esfera.radius, esfera.pos.y, esfera.pos.z], #parte da esquerda da esfera [2]
+        [esfera.pos.x, esfera.pos.y - esfera.radius, esfera.pos.z]  #parte de baixo da esfera [3]
+    ]
+    for coordEsfera in coordenadasEsfera:
+        if coordenadasEsfera[0] + esfera.radius >= pd.pos.x:
+            esfera.velocity.x *= -1
+            esfera.pos.x = pd.pos.x - esfera.radius
+            
+        elif coordenadasEsfera[3] - esfera.radius <= pc.pos.y:
+            esfera.velocity.y *= -1
+            esfera.pos.y = pc.pos.y + esfera.radius 
+            
+        elif coordenadasEsfera[2] - esfera.radius <= pe.pos.x:
+            esfera.velocity.x *= -1
+            esfera.pos.x = pe.pos.x + esfera.radius
+            
+        elif coordenadasEsfera[1] + esfera.radius >= pb.pos.y:
+            esfera.velocity.y *= -1
+            esfera.pos.y = pb.pos.y - esfera.radius'''
+        
+def verificaColisao(esferas, alpha):
+    for esfera in esferas:
+        esfera.pos += esfera.velocity * alpha
+        if esfera.pos.x + esfera.radius >= pd.pos.x:
+            esfera.velocity.x *= -1
+            
+        elif esfera.pos.x - esfera.radius <= pe.pos.x:
+            esfera.velocity.x *= -1
+            
+        elif esfera.pos.y + esfera.radius >= pc.pos.y:
+            esfera.velocity.y *= -1
+            
+        elif esfera.pos.y - esfera.radius <= pb.pos.y:
+            esfera.velocity.y *= -1
+                           
+esfera = sphere(pos=vector(0, 0, 0), radius=0.5, color=vector(255, 0, 0)) 
+esfera2 = sphere(pos=vector(1, 1, 0), radius=0.5, color=vector(0, 0, 255))
+esfera3 = sphere(pos=vector(-1, -1, 0), radius=0.5, color=vector(0, 255, 0))
+
+esferas = [esfera, esfera2, esfera3]
+
+pe = box(pos=vector(-5,0,0), size=vector(0.1,10,0.1))
+pd = box(pos=vector(5,0,0), size=vector(0.1,10,0.1))
+pc = box(pos=vector(0,5,0), size=vector(10,0.1,0.1))
+pb = box(pos=vector(0,-5,0), size=vector(10,0.1,0.1))
+
+#paredes = [pd, pc, pe, pb]
+
+cx1 = random.randrange(-360, 360)
+cy1 = random.randrange(-360, 360)
+cz1 = random.randrange(-360, 360)
+esfera.velocity = vector(cx1, cy1, 0)
+
+cx2 = random.randrange(-360, 360)
+cy2 = random.randrange(-360, 360)
+cz2 = random.randrange(-360, 360)
+esfera2.velocity = vector(cx2, cy2, 0)
+
+cx3 = random.randrange(-360, 360)
+cy3 = random.randrange(-360, 360)
+cz3 = random.randrange(-360, 360)
+esfera3.velocity = vector(cx3, cy3, 0)
+
+alpha = 0.0001
+while True:
+    rate(350)
+    verificaColisao(esferas, alpha)
+    
